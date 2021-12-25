@@ -28,18 +28,18 @@ SYNC_TIME = 0
 FUTURE_UNIT = 13
 
 
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
-                    datefmt='%a, %d %b %Y %H:%M:%S',
-                    filename='log/iceblaze.log',
-                    filemode='w')
+#logging.basicConfig(level=logging.DEBUG,
+#                    format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+#                    datefmt='%a, %d %b %Y %H:%M:%S',
+#                    filename='../history/default/iceblaze.log',
+#                    filemode='w')
 # 配置控制台打印
 # 设置控制台日志打印格式
-formatter = logging.Formatter('%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s')
-console = logging.StreamHandler()
-console.setFormatter(formatter)
-console.setLevel(logging.DEBUG)
-logging.getLogger('').addHandler(console)
+#formatter = logging.Formatter('%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s')
+#console = logging.StreamHandler()
+#console.setFormatter(formatter)
+#console.setLevel(logging.DEBUG)
+#logging.getLogger('').addHandler(console)
 
 
         
