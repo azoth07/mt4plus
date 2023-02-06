@@ -15,3 +15,5 @@ tushare原版：https://github.com/waditu/tushare
 原版：https://github.com/flameOnYou/mt4plus
 # mt4plus
 一款将股市十年价格导入MT4的插件
+http://quotes.money.163.com/service/chddata.html?code=
+网易数据源已经时效 --20230206
