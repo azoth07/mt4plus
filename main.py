@@ -45,15 +45,15 @@ end_date1= time.strftime("%Y%m%d",time.gmtime())
 def getHistory(symbol,period,point):
     plist = []
     if symbol == ""  or symbol is None:
-        logging.info( "wrongful  symbol")
+        print( "wrongful  symbol")
         return plist
     try:
         # 日线数据从akshare获取
         if period == 1440:
             period = "daily"
-            if 'sh' in symbol:
+            if 'zs' in symbol:
             # print "get_k_data",symbol,period
-                data = ak.index_zh_a_hist(symbol="000001", period="daily", start_date=start_date1, end_date=end_date1)
+                data = ak.index_zh_a_hist(symbol=symbol.replace('zs', ''), period="daily", start_date=start_date1, end_date=end_date1)
 
            
 
@@ -96,12 +96,10 @@ def getHistory(symbol,period,point):
             
             # 分钟数据从ashare获取
             period = "60m"
-            if '600' in symbol:
+            if 'sh' or 'sz' in symbol:
             # print "get_k_data",symbol,period
-                data = ash.get_price('sh'+symbol, frequency=period,count=3600)
-            if '300' in symbol:
-            # print "get_k_data",symbol,period
-                data = ash.get_price('sz'+symbol, frequency=period,count=3600)
+                data = ash.get_price(symbol, frequency=period,count=3600)
+
             # print "=========",symbol,":",period
             if data is None:
                 print("ashare is no data symbol %s period %s",symbol,period,)

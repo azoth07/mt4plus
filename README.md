@@ -27,3 +27,5 @@ https://github.com/akfamily/akshare
 https://github.com/mpquant/Ashare
 
 不再保留python2版本，全量更新为python3
+
+指数代码参考：http://quote.eastmoney.com/center/hszs.html
