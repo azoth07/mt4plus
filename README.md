@@ -19,8 +19,11 @@ pip install -r requirement.txt
 无法使用了，由于
 http://quotes.money.163.com/service/chddata.html?code=
 网易数据源已经失效 --20230206
+
 替换daily源为akshare
 https://github.com/akfamily/akshare
+
 替换hourly源为ashare
 https://github.com/mpquant/Ashare
+
 不再保留python2版本，全量更新为python3
