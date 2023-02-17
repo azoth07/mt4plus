@@ -21,7 +21,7 @@ def get_price_min_tx(code, end_date=None, count=10, frequency='1d'):    #分钟�
     st= json.loads(requests.get(URL).content);       buf=st['data'][code]['m'+str(ts)] 
     df=pd.DataFrame(buf,columns=['day','open','close','high','low','volume','n1','n2'])   
     df=df[['day','open','close','high','low','volume']]    
-    df[['open','close','high','low','volume']]=df[['open','close','high','low','volume']].astype(float)
+    df[['open','close','high','low','volume']]=df[['open','close','high','low','volume']].astype('float')
     #df.time=pd.to_datetime(df.time);   df.set_index(['time'], inplace=True);   df.index.name=''          #处理索引     
     df['close'][-1]=float(st['data'][code]['qt'][code][3])                #最新基金数据是3位的
     return df

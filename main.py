@@ -51,12 +51,16 @@ def getHistory(symbol,period,point):
     try:
         # 日线数据从akshare获取
         if period == 1440:
-           
-      
-            # 分钟数据从tushare获取
             period = "daily"
+            if 'sh' in symbol:
             # print "get_k_data",symbol,period
-            data = ak.stock_zh_a_hist(symbol, period,start_date=start_date1, end_date=end_date1, adjust="")
+                data = ak.index_zh_a_hist(symbol="000001", period="daily", start_date=start_date1, end_date=end_date1)
+
+           
+
+            # print "get_k_data",symbol,period
+            else:
+                data = ak.stock_zh_a_hist(symbol, period,start_date=start_date1, end_date=end_date1, adjust="")
             # print "=========",symbol,":",period
             if data is None:
                 print("akshare is no data symbol %s period %s",symbol,period,)
@@ -90,7 +94,7 @@ def getHistory(symbol,period,point):
             return plist
         else:
            
-      
+            
             # 分钟数据从ashare获取
             period = "60m"
             if '600' in symbol:
