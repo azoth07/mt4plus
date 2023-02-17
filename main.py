@@ -9,7 +9,6 @@ import datetime
 import hstutils
 import json
 import threading
-import logging
 import initEnvironment 
 #import tushare as ts
 #import pandas as pd 
@@ -133,15 +132,6 @@ def getHistory(symbol,period,point):
                 plist.append(priceStruc)
             return plist
     except Exception as e:
-        print('str(Exception):\t', str(Exception))
-        print('str(e):\t\t', str(e))
-        print('repr(e):\t', repr(e))
-        #print('e.message:\t', e.message)
-        print('traceback.print_exc():')
-        traceback.print_exc()
-        print('traceback.format_exc():\n%s' % traceback.format_exc())
-        errormsg = "method get_k_data [ symbol %s period %s ]",symbol,period
-        logging.info(errormsg)
         return []
     
 
