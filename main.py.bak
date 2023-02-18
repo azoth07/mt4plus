@@ -73,7 +73,7 @@ def getHistory(symbol,period,point):
                 priceStruc = hstutils.PriceStruct(times, opens, high, low, close,volume)
                 plist.append(priceStruc)
             return plist
-        if period == 60:          
+        else:           
             # 小时分钟数据从ashare获取，其中股指不获取小时分钟数值
             period = "60m"
             if 'sh' or 'sz' in symbol:
@@ -137,8 +137,7 @@ def startChartRun(symbol,period):
 def startThread():
     while symbolList:
         code = symbolList.pop()
-        #periodList = [5,15,30,60,1440]
-        periodList = [60,1440]
+        periodList = [5,15,30,60,1440]
         for period in periodList:
             t = threading.Thread(target=startChartRun,args=(code,period))
             t.start()
