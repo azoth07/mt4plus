@@ -38,9 +38,12 @@ def getHistory(symbol,period,point):
             if 'zs' in symbol:
             # 获取指数（只获取日线）
                 data = ak.index_zh_a_hist(symbol=symbol.replace('zs', ''), period="daily", start_date=start_date1, end_date=end_date1)
-            else:
-            # 获取日线stock price 
-                data = ak.stock_zh_a_hist(symbol, period,start_date=start_date1, end_date=end_date1, adjust="")
+            if 'sh' in symbol:
+            # 获取日线stock price （前复权）
+                data = ak.stock_zh_a_hist(symbol=symbol.replace('sh', ''), period="daily", start_date=start_date1, end_date=end_date1,adjust="qfq")
+            if 'sz' in symbol:
+            # 获取日线stock price （前复权）
+                data = ak.stock_zh_a_hist(symbol=symbol.replace('sz', ''), period="daily", start_date=start_date1, end_date=end_date1,adjust="qfq")
             if data is None:
                 print("akshare is no data symbol %s period %s",symbol,period,)
                 return plist
