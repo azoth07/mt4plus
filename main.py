@@ -73,6 +73,45 @@ def getHistory(symbol,period,point):
                 priceStruc = hstutils.PriceStruct(times, opens, high, low, close,volume)
                 plist.append(priceStruc)
             return plist
+            period = "weekly"
+            if 'zs' in symbol:
+            # 获取指数（只获取日线）
+                data = ak.index_zh_a_hist(symbol=symbol.replace('zs', ''), period="weekly", start_date=start_date1, end_date=end_date1)
+            if 'sh' in symbol:
+            # 获取日线stock price （前复权）
+                data = ak.stock_zh_a_hist(symbol=symbol.replace('sh', ''), period="weekly", start_date=start_date1, end_date=end_date1,adjust="qfq")
+            if 'sz' in symbol:
+            # 获取日线stock price （前复权）
+                data = ak.stock_zh_a_hist(symbol=symbol.replace('sz', ''), period="weekly", start_date=start_date1, end_date=end_date1,adjust="qfq")
+            if data is None:
+                print("akshare is no data symbol %s period %s",symbol,period,)
+                return plist
+            #整理格式准备写入mt4 hst文件
+            resultlist = []
+            lens = len(data)
+            for unit in data.iterrows():
+                dates = unit[1]['日期']
+            #长度等于10的是%Y-%m-%d格式,16的是%Y-%m-%d %H:%M 格式
+                dataformate = "%Y-%m-%d %H:%M"
+                date_len = len(dates)
+                if date_len == 10 :
+                    dataformate = "%Y-%m-%d"
+                d=datetime.datetime.strptime(dates,dataformate)
+                times=int(time.mktime(d.timetuple()))
+                opens=unit[1]['开盘']
+                close=unit[1]['收盘']
+                high=unit[1]['最高']
+                low=unit[1]['最低']
+                volume=unit[1]['成交量']              
+                times = int(times)
+                opens = hstutils.floatHandle(opens,point)
+                high = hstutils.floatHandle(high,point)
+                low = hstutils.floatHandle(low,point)
+                close = hstutils.floatHandle(close,point)
+                volume = int(volume)           
+                priceStruc = hstutils.PriceStruct(times, opens, high, low, close,volume)
+                plist.append(priceStruc)
+            return plist
         if period == 60:          
             # 小时分钟数据从ashare获取，其中股指不获取小时分钟数值
             period = "60m"
@@ -137,7 +176,7 @@ def startChartRun(symbol,period):
 def startThread():
     while symbolList:
         code = symbolList.pop()
-        #periodList = [5,15,30,60,1440]
+        
         periodList = [60,1440]
         for period in periodList:
             t = threading.Thread(target=startChartRun,args=(code,period))
