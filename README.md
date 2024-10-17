@@ -4,7 +4,7 @@ forked from 青山大神
 
 环境需求按照requirement.txt 
 
-pip install -r requirement.txt
+pip install -r requirements.txt
 
 ~~增加tushare备份~~
 
