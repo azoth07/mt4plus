@@ -1,3 +1,4 @@
 akshare==1.8.86
-pandas==1.5.3
-requests==2.28.2
+pandas
+requests
+urllib3==1.26.7
